@@ -1,4 +1,5 @@
-# Official flax Docker Container
+# Un-Official Flax Docker Container
+Source Code: https://github.com/lryanuk/chia-docker/tree/flax
 
 ## Basic Startup
 ```
