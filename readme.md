@@ -26,6 +26,10 @@ alternatively you can pass in your local keychain, if you have previously deploy
 ```
 -v ~/.local/share/python_keyring/:/root/.local/share/python_keyring/
 ```
+or if you would like to persist the entire mainnet subdirectory and not touch the key directories at all
+```
+-v ~/.flax/mainnet:/root/.flax/mainnet -e keys="persistent"
+```
 
 To start a farmer only node pass
 ```
