@@ -1,4 +1,5 @@
 # Unofficial Flax-og (FoxyPool) Docker Container
+Source Code: https://github.com/lryanuk/chia-docker/tree/flax-og
 
 ## Basic Startup
 ```
