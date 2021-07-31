@@ -20,7 +20,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 RUN echo "cloning ${BRANCH}"
-RUN git clone --branch ${BRANCH} https://github.com/Flax-Network/flax-blockchain.git \
+RUN git clone --branch ${BRANCH} https://github.com/felixbrucker/flax-blockchain.git \
 && cd flax-blockchain \
 && git submodule update --init mozilla-ca \
 && chmod +x install.sh \

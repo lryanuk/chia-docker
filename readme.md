@@ -1,9 +1,8 @@
-# Unofficial Flax Docker Container
-Source Code: https://github.com/lryanuk/chia-docker/tree/flax
+# Unofficial Flax-og (FoxyPool) Docker Container
 
 ## Basic Startup
 ```
-docker run --name <container-name> -d lryanuk/flax-docker:latest
+docker run --name <container-name> -d lryanuk/flax-og-docker:latest
 (optional -v /path/to/plots:/plots)
 ```
 #### set the timezone for the container (optional, defaults to UTC)
@@ -56,7 +55,7 @@ docker exec -it flax venv/bin/flax show -s -c
 
 #### Connect to testnet?
 ```
-docker run -d --expose=58444 --expose=8555 -e testnet=true --name <container-name> lryanuk/flax-docker:latest
+docker run -d --expose=58444 --expose=8555 -e testnet=true --name <container-name> lryanuk/flax-og-docker:latest
 ```
 
 #### Need a wallet?

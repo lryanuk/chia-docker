@@ -1,5 +1,5 @@
 # Build Notes
 
 ```
-docker buildx build --build-arg BRANCH=main --push --platform linux/arm64,linux/amd64 --tag lryanuk/flax-docker:latest .
+docker buildx build --build-arg BRANCH=main --push --platform linux/arm64,linux/amd64 --tag lryanuk/flax-og-docker:latest .
 ```
