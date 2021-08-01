@@ -3,26 +3,26 @@ if [[ -n "${TZ}" ]]; then
   ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 fi
 
-cd /chia-blockchain
+cd /chaingreen-blockchain
 
 . ./activate
 
-chia init
+chaingreen init
 
 if [[ ${keys} == "persistent" ]]; then
   echo "Not touching key directories"
 elif [[ ${keys} == "generate" ]]; then
   echo "to use your own keys pass them as a text file -v /path/to/keyfile:/path/in/container and -e keys=\"/path/in/container\""
-  chia keys generate
+  chaingreen keys generate
 elif [[ ${keys} == "copy" ]]; then
   if [[ -z ${ca} ]]; then
     echo "A path to a copy of the farmer peer's ssl/ca required."
 	exit
   else
-  chia init -c ${ca}
+  chaingreen init -c ${ca}
   fi
 else
-  chia keys add -f ${keys}
+  chaingreen keys add -f ${keys}
 fi
 
 for p in ${plots_dir//:/ }; do
@@ -30,30 +30,30 @@ for p in ${plots_dir//:/ }; do
     if [[ ! "$(ls -A $p)" ]]; then
         echo "Plots directory '${p}' appears to be empty, try mounting a plot directory with the docker -v command"
     fi
-    chia plots add -d ${p}
+    chaingreen plots add -d ${p}
 done
 
-sed -i 's/localhost/127.0.0.1/g' ~/.chia/mainnet/config/config.yaml
+sed -i 's/localhost/127.0.0.1/g' ~/.chaingreen/mainnet/config/config.yaml
 
 if [[ ${farmer} == 'true' ]]; then
-  chia start farmer-only
+  chaingreen start farmer-only
 elif [[ ${harvester} == 'true' ]]; then
   if [[ -z ${farmer_address} || -z ${farmer_port} || -z ${ca} ]]; then
     echo "A farmer peer address, port, and ca path are required."
     exit
   else
-    chia configure --set-farmer-peer ${farmer_address}:${farmer_port}
-    chia start harvester
+    chaingreen configure --set-farmer-peer ${farmer_address}:${farmer_port}
+    chaingreen start harvester
   fi
 else
-  chia start farmer
+  chaingreen start farmer
 fi
 
 if [[ ${testnet} == "true" ]]; then
   if [[ -z $full_node_port || $full_node_port == "null" ]]; then
-    chia configure --set-fullnode-port 58444
+    chaingreen configure --set-fullnode-port 58444
   else
-    chia configure --set-fullnode-port ${var.full_node_port}
+    chaingreen configure --set-fullnode-port ${var.full_node_port}
   fi
 fi
 
