@@ -1,4 +1,4 @@
-# Official Chia Docker Container
+# Unofficial Chia Docker Container
 
 ## Basic Startup
 ```
