@@ -1,4 +1,5 @@
 # Unofficial Spare Docker Container
+Source Code: https://github.com/lryanuk/chia-docker/tree/spare
 
 ## Basic Startup
 ```
