@@ -1,8 +1,8 @@
-# Unofficial Chia Docker Container
+# Unofficial GreenDoge Docker Container
 
 ## Basic Startup
 ```
-docker run --name <container-name> -d ghcr.io/chia-network/chia:latest
+docker run --name <container-name> -d lryanuk/greendoge-docker:latest
 (optional -v /path/to/plots:/plots)
 ```
 #### set the timezone for the container (optional, defaults to UTC)
@@ -12,7 +12,7 @@ Timezones can be configured using the `TZ` env variable. A list of supported tim
 ```
 ## Configuration
 
-You can modify the behavior of your Chia container by setting specific environment variables.
+You can modify the behavior of your greendoge container by setting specific environment variables.
 
 To use your own keys pass as arguments on startup (post 1.0.2 pre 1.0.2 must manually pass as shown below)
 ```
@@ -20,9 +20,9 @@ To use your own keys pass as arguments on startup (post 1.0.2 pre 1.0.2 must man
 ```
 or pass keys into the running container
 ```
-docker exec -it <container-name> venv/bin/chia keys add
+docker exec -it <container-name> venv/bin/greendoge keys add
 ```
-alternatively you can pass in your local keychain, if you have previously deployed chia with these keys on the host machine
+alternatively you can pass in your local keychain, if you have previously deployed greendoge with these keys on the host machine
 ```
 -v ~/.local/share/python_keyring/:/root/.local/share/python_keyring/
 ```
@@ -43,22 +43,22 @@ To start a harvester only node pass
 
 The `plots_dir` environment variable can be used to specify the directory containing the plots, it supports PATH-style colon-separated directories.
 
-#### or run commands externally with venv (this works for most chia XYZ commands)
+#### or run commands externally with venv (this works for most greendoge XYZ commands)
 ```
-docker exec -it chia venv/bin/chia plots add -d /plots
+docker exec -it greendoge venv/bin/greendoge plots add -d /plots
 ```
 
 #### status from outside the container
 ```
-docker exec -it chia venv/bin/chia show -s -c
+docker exec -it greendoge venv/bin/greendoge show -s -c
 ```
 
 #### Connect to testnet?
 ```
-docker run -d --expose=58444 --expose=8555 -e testnet=true --name <container-name> ghcr.io/chia-network/chia:latest
+docker run -d --expose=58444 --expose=8555 -e testnet=true --name <container-name> lryanuk/greendoge-docker:latest
 ```
 
 #### Need a wallet?
 ```
-docker exec -it chia-farmer1 venv/bin/chia wallet show (follow the prompts)
+docker exec -it greendoge-farmer1 venv/bin/greendoge wallet show (follow the prompts)
 ```

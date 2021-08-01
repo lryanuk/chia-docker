@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
-EXPOSE 8555
-EXPOSE 8444
+EXPOSE 6555
+EXPOSE 6544
 
 ENV keys="generate"
 ENV harvester="false"
@@ -20,14 +20,14 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 RUN echo "cloning ${BRANCH}"
-RUN git clone --branch ${BRANCH} https://github.com/Chia-Network/chia-blockchain.git \
-&& cd chia-blockchain \
+RUN git clone --branch ${BRANCH} https://github.com/GreenDoge-Network/greendoge-blockchain.git \
+&& cd greendoge-blockchain \
 && git submodule update --init mozilla-ca \
 && chmod +x install.sh \
 && /usr/bin/sh ./install.sh
 
-ENV PATH=/chia-blockchain/venv/bin/:$PATH
-WORKDIR /chia-blockchain
+ENV PATH=/greendoge-blockchain/venv/bin/:$PATH
+WORKDIR /greendoge-blockchain
 ADD ./entrypoint.sh entrypoint.sh
 
 ENTRYPOINT ["bash", "./entrypoint.sh"]
